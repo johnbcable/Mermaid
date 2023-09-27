@@ -44,14 +44,22 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name Build with Jekyll
-        uses: actions/jekyll-build-pages@v2
+        uses: actions/jekyll-build-pages@v1
         with:
           source: ./docs
           destination: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-        
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+
+  # Deployment job
+  deploy:
+  environment:
+    name: github-pages
+    url: ${{ step/s.deployment.outputs.page_url }}
+  runs-on: ubuntu-latest
+  needs: build
+  steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
