@@ -35,15 +35,15 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 # Deployment job
-deploy:
-  environment:
-    name: github-pages
-    url: ${{ step/s.deployment.outputs.page_url }}
-  runs-on: ubuntu-latest
-  needs: build
-  steps:
-    - name: Test
-      run: echo
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v1
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ step/s.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Test
+        run: echo
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
