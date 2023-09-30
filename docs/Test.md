@@ -1,82 +1,8 @@
-Here is some Markdown trext before the Mermaid chart
+Here is some Markdown text before the Mermaid chart
 
 ```mermaid
----
-title: ER Model Diagram
----
-erDiagram
-    TITLE {
-        int title_id PK
-        int type_id FK
-        string name
-        datetime release_date
-    }
-
-    TITLE_TYPE {
-        int type_id PK
-        struing type
-    }
-
-    ACTOR {
-        int actor_id PK
-        string name
-        date date_of_birth
-    }
-
-    TITLE_ACTOR {
-        int title_id PK "FK"
-        int actor_id PK "FK"
-    }
-
-    GENRE {
-        int genre_id PK
-        string name
-    }
-
-    TITLE_GENRE {
-        int title_id PK "FK"
-        int genre_id PK "FK"
-    }
-
-    EPISODE {
-        int episode_id PK
-        int season_id PK
-        string name
-        int season_number
-        int episode_number
-        datetime release_date
-    }
-
-    SEASON {
-        int season_id PK
-        int title_id FK
-        int season_number
-        date release_year
-    }
-
-    REVIEW {
-        int review_id PK
-        int title_id FK
-        int season_id FK
-        string review_by
-        datetime review_date
-        string review_text
-    }
-
-    TITLE }|..|| TITLE_TYPE: has
-    TITLE ||--o{ TITLE_GENRE: "belongs to"
-    TITLE ||--|{ TITLE_ACTOR: features
-    TITLE ||..|{ SEASON: contains
-
-    TITLE_GENRE }o--|| GENRE: references
-
-    TITLE_ACTOR }|--|| ACTOR: references
-
-    EPISODE }|..|| SEASON: contains
-
-    REVIEW }o..o| TITLE: "made against"
-    REVIEW }o..o| EPISODE: "made against"
-    REVIEW }o..o| SEASON: "made against"
+flowchart LR
+    A-- "test" --> B
 ```
 Here is some Markdown text occurring AFTER the Mermaid chart
 
